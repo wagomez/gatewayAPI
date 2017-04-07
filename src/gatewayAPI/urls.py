@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import gateway.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$',gateway.views.home),
+    url(r'^setLoadBalance/(?P<cmts>\w.+)/(?P<d2LoadBalance>[0-1]+)/(?P<d3LoadBalance>[0-1]+)', gateway.views.setLoadBalance),
+    url(r'^getDevicesCMTS/', gateway.views.getDevicesCMTS),
+    url(r'^getDevicesPE/', gateway.views.getDevicesPE)
 ]

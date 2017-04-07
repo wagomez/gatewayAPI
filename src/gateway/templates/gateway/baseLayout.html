@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Prueba de pagina principal</title>
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.2.1.js"   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="   crossorigin="anonymous"></script>
+    <script src="{% static 'bootstrap/js/funcs.js' %}"></script>
+    <script src="{% static 'bootstrap/js/main.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+
+
+
+
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a id="teamName" class="navbar-brand" href="#"> </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+
+        </div>
+        </div>
+    </nav>
+
+	<script>
+		document.getElementById('teamName').innerHTML = "Enigma - WAYAK'" ;
+	</script>
+
+
+	<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar " role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                <li role="presentation"><a href="#devices" aria-controls="devices" role="tab" data-toggle="tab">Devices</a></li>
+                <li role="presentation"><a href="#cmtsarch" aria-controls="cmtsarch" role="tab" data-toggle="tab">CMTS Architecture</a></li>
+                <li role="presentation"><a href="#cmtsdsfreq" aria-controls="cmtsdsfreq" role="tab" data-toggle="tab">CMTS DS Frequency</a></li>
+                <li role="presentation"><a href="#cmtsusfreq" aria-controls="cmtsusfreq" role="tab" data-toggle="tab">CMTS US Frequency</a></li>
+                <li role="presentation"><a href="#grlreview" aria-controls="grlreview" role="tab" data-toggle="tab">Review</a></li>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+  			<!-- Tab HOME-->
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+	        </div>
+            <!-- Tab Devices-->
+            <div role="tabpanel" class="tab-pane" id="devices">
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">IP</h1>
+                    <button id="btnGetDevices">Get Devices</button>
+                    <br><br>
+                    <div class="row placeholders" id="listDevices" hidden>
+
+                        <div class="input-group input-group-lg">
+
+                            <span class="input-group-addon">CMTS</span>
+                            <select name="location" class="form-control" id="listOfCmts">
+                                <option value="--" selected>--</option>
+                            </select>
+
+                        </div>
+
+                        <br>
+
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon">PE</span>
+                            <select name="location" class="form-control" id="listOfPE">
+                                <option value="--" selected>--</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab CMTS ARCH -->
+            <div role="tabpanel" class="tab-pane" id="cmtsarch">
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">CMTS Architecture</h1>
+                    <div class="row placeholders">
+                        <div class="checkbox input-group input-group-lg form-control">
+                            <label><input type="checkbox" id="cmtsRedundancy"> CMTS Redundancy</label>
+                        </div>
+                        <br>
+                        <div class="input-group form-control">
+                            <p>SG Arch
+                                <select id="sgarch" name="sgarch">
+                                    <option value="0">---</option>
+                                    <option value="1">1:1</option>
+                                    <option value="2">1:2</option>
+                                    <option value="3">1:4</option>
+                                </select>
+                            </p>
+                        </div>
+                        <br>
+                        <div class="input-group form-control">
+                            <p>DS per SG
+                                <select id="dspersg" name="dspersg">
+                                    <option value="0">--</option>
+                                    <option value="8">8</option>
+                                    <option value="16">16</option>
+                                    <option value="24">24</option>
+                                    <option value="32">32</option>
+                                </select>
+                            </p>
+                        </div>
+                        <br>
+                        <div class="input-group form-control">
+                            <p>US per SG
+                                <select id="uspersg" name="uspersg">
+                                    <option value="0">--</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </p>
+                        </div>
+                        <br>
+                        <div class="input-group form-control">
+                            <p>Number of Service Groups
+                                <select id="sgs" name="sgs">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+
+                                </select>
+
+                            </p>
+
+                        </div>
+
+                        <div class="checkbox input-group input-group-lg form-control">
+                            <label><input type="checkbox" id="loadbalancingD2"> D2.0 Load Balancing</label>
+                        </div>
+
+                        <div class="checkbox input-group input-group-lg form-control">
+                            <label><input type="checkbox" id="loadbalancingD3"> D3.0 Load Balancing</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab CMTS DS FREQ -->
+            <div role="tabpanel" class="tab-pane" id="cmtsdsfreq">
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">CMTS DS Freqs</h1>
+                    <div class="row placeholders">
+                        <div class="checkbox input-group input-group-lg form-control">
+                            <label><input type="checkbox" id="dsContigFreq"> DS Contiguous Frequencies</label>
+                        </div>
+                        <br>
+                        <div class="input-group form-control">
+
+                            <button id="genDSfreq">generateDS</button>
+
+                            <br><br><br>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="freq0">Initial Freq:</label>
+                                <div class="col-sm-4" id="divFreq0">
+                                    <input type="number" class="form-control" id="freq0" placeholder="freq0"> Mhz
+                                </div>
+                            </div>
+                            <br><br><br><br>
+                            <div>
+                                <ul class="list-group form-inline" id="listDSfreq">
+                                    <br>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab CMTS US FREQ-->
+            <div role="tabpanel" class="tab-pane" id="cmtsusfreq">
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">CMTS US Freqs</h1>
+                    <div class="row placeholders ">
+                        <div class="input-group form-control">
+                            <div class="form-group form-inline">
+                                <label class="control-label col-sm-2" for="usfreq0">Initial Freq:</label>
+                                <div class="col-sm-4">
+                                    <p> <input type="number"  id="usfreq0" placeholder="freq 0" onchange="usChangeEventHadler(0)"> Mhz </p>
+                                    <p>Modulation
+                                        <select id="usmod1" name="usmod1" onchange="usModChangeEventHadler(0)">
+                                            <option value="--">--</option>
+                                            <option value="TDMA">TDMA</option>
+                                            <option value="ATDMA">ATDMA</option>
+                                            <option value="QPSK">QPSK</option>
+                                        </select>
+                                    </p>
+                                </div>
+                            </div>
+                            <br><br><br><br>
+                            <div>
+                                <ul class="list-group form-inline" id="listUSfreq">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab General Review -->
+            <div role="tabpanel" class="tab-pane" id="grlreview">
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">General Review</h1>
+
+                    <div class="row placeholders">
+                        <button id="reviewBtn">GenerateReview</button>
+                    </div>
+                    <div id="valores" class="green" hidden>
+                        <span class="input-group-addon">CMTS</span>
+                        <input id="valueCMTS" class="form-control" type="text" >
+                        <br><br>
+                        <span class="input-group-addon">PE</span>
+                        <input id="valuePE" class="form-control " type="text" >
+                        <br><br>
+                        <span class="input-group-addon">CMTS Redundancy</span>
+                        <input id="valueCmtsRedundancy" type="text" >
+                        <button id="processRedundancyBtn">Process Redundancy</button>
+                        <br><br>
+                        <span class="input-group-addon">LoadBalance</span>
+                        <p>Load Balance D2</p>
+                        <input id="valueLoadBalanceD2" type="text" >
+                        <p>Load Balance D3</p>
+                        <input id="valueLoadBalanceD3" type="text" >
+                        <button id="lbBtn">Process LoadBalance</button>
+                    </div>
+                    <br>
+                    <div id="DSValues" class="green" hidden>
+                        <span class="input-group-addon">DS Freq</span>
+                        <ul class="list-group form-inline" id="reviewDSfreq">
+                            <br>
+                        </ul>
+                    </div>
+                    <br>
+                    <div id="USValues" class="green" hidden>
+                        <span class="input-group-addon">US Freq</span>
+                        <ul class="list-group form-inline" id="reviewUSfreq">
+                        </ul>
+                    </div>
+                    <br>
+                    <div id="processAll" class="green" hidden>
+                        <span class="input-group-addon">PROCESS ALL</span>
+                        <button id="processBtn">GENERAL Process</button>
+                    </div>
+                </div>
+            </div>
+
+  		</div>
+      </div>
+    </div>
+
+</body>
+</html>
