@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import requests
-from requests import Session
+#from requests import Session
 import json
 
 # Create your views here.
@@ -27,27 +27,24 @@ def getDevicesCMTS(request):
    return render(request,"gateway/devicesCMTS.html",context)
 
 def getDevicesPE(request):
-
-   urlGetDevicesCMTS = "http://localhost:5052/getDevicesGroup/PE/"
+   urlGetDevicesPE = "http://localhost:5052/getDevicesGroup/PE/"
    headers = {'Accept': 'application/data+json'}
-   req = requests.get(urlGetDevicesCMTS, headers=headers)
-
+   req = requests.get(urlGetDevicesPE, headers=headers)
    devicesPE = req.json()
    devicesPE = {"pe": devicesPE}
    devicesPE = json.dumps(devicesPE)
    context = {
        #'devicesCMTS': '["cbr8-0", "cbr8-1"]'
-       'devicesCMTS': devicesPE
+       'devicesPE': devicesPE
    }
    return render(request,"gateway/devicesCMTS.html",context)
-
-
 
 def setLoadBalance(request, cmts,d2LoadBalance,d3LoadBalance):
 
    urlSetLoadBalance = "http://localhost:5051/setLoadBalance/"+cmts+"/"+d2LoadBalance+"/"+d3LoadBalance
    headers = {'Accept': 'application/data+json'}
-   req = requests.get(urlSetLoadBalance, headers=headers)
+   #req = \
+   requests.get(urlSetLoadBalance, headers=headers)
 
 
    context = {

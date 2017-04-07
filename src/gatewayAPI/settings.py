@@ -31,13 +31,29 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gateway'
+]
+
+INSTALLED_APPS += ('django_nose', )
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_OUTPUT_DIR = os.environ.get('TEST_OUTPUT_DIR','.')
+NOSE_ARGS = [
+  '--verbosity=2',                  # verbose output
+  '--nologcapture',                 # don't output log capture
+  '--with-coverage',                # activate coverage report
+  '--cover-package=gateway',           # coverage reports will apply to these packages
+  '--with-spec',                    # spec style tests
+  '--spec-color',
+  '--with-xunit',                   # enable xunit plugin
+  '--xunit-file=%s/unittests.xml' % TEST_OUTPUT_DIR,
+  '--cover-xml',                    # produce XML coverage info
+  '--cover-xml-file=%s/coverage.xml' % TEST_OUTPUT_DIR,
 ]
 
 MIDDLEWARE_CLASSES = [
