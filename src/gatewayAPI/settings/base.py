@@ -37,23 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'gateway'
-]
-
-INSTALLED_APPS += ('django_nose', )
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-TEST_OUTPUT_DIR = os.environ.get('TEST_OUTPUT_DIR','.')
-NOSE_ARGS = [
-  '--verbosity=2',                  # verbose output
-  '--nologcapture',                 # don't output log capture
-  '--with-coverage',                # activate coverage report
-  '--cover-package=gateway',           # coverage reports will apply to these packages
-  '--with-spec',                    # spec style tests
-  '--spec-color',
-  '--with-xunit',                   # enable xunit plugin
-  '--xunit-file=%s/unittests.xml' % TEST_OUTPUT_DIR,
-  '--cover-xml',                    # produce XML coverage info
-  '--cover-xml-file=%s/coverage.xml' % TEST_OUTPUT_DIR,
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -136,4 +121,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR,"static"),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR,"static"),"static")

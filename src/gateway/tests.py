@@ -27,7 +27,7 @@ class TestGetDevicesCMTS(APITestCase):
     def test_GetCMTS_infoRecived(self):
         info=self.response.content
         info=info.decode()
-        print(info)
+        #print(info)
         busqueda=info.find('{"cmts":')
         if(busqueda<0):
             busqueda=True
@@ -47,7 +47,7 @@ class TestGetDevicesPE(APITestCase):
     def test_GetPE_infoRecived(self):
         info=self.response.content
         info=info.decode()
-        print(info)
+        #print(info)
         busqueda=info.find('{"pe":')
         if(busqueda<0):
             busqueda=True
