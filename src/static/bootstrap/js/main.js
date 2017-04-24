@@ -123,8 +123,6 @@ $(document).ready(function(){
         $('#USValues').show();
 
 
-
-
     });
 
 
@@ -176,5 +174,62 @@ $(document).ready(function(){
 
 
     });
+
+    $('#processIntCableCtrlBtn').click(function(){
+
+        alert("clickprocessIntCableCtrlBtn1");
+
+        callWSsetControllerIntegratedCable();
+
+
+    });
+
+    $('#processUSCableCtrlBtn').click(function(){
+
+        alert("clickprocessUSCableCtrlBtn");
+
+        callWSsetControllerUpstreamCable();
+
+
+    });
+
+    $('#processIntCableBtn').click(function(){
+
+        alert("processIntCableBtn");
+
+        callWSsetInterfaceCable();
+
+
+    });
+
+    $('#processIntegratedCableBtn').click(function(){
+
+        alert("processIntCableBtn");
+
+        callWSsetIntIntegratedCable();
+
+
+    });
+
+    $('#processIntWideBandBtn').click(function(){
+
+        alert("processIntWideBandBtn");
+
+        callWSsetIntWideBand();
+
+
+    });
+
+
+    $('#processCableFiberNodeBtn').click(function(){
+
+        alert("processCableFiberNodeBtn");
+
+        callWSsetCableFiberNode();
+
+
+    });
+
+
 
 });
