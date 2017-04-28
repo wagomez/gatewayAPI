@@ -4,6 +4,12 @@ from requests import Session
 import json
 from django.views.decorators.csrf import csrf_exempt
 import math
+import os
+
+# MICROSERVICES IP´s
+getDevicesIP = os.environ.get('GETDEVICES_HOST','127.0.0.1')
+setServicesIP = os.environ.get('SETSERVICES_HOST','127.0.0.1')
+
 
 # Create your views here.
 def home(request):
@@ -15,7 +21,7 @@ def home(request):
 
 def getDevicesCMTS(request):
 
-   urlGetDevicesCMTS = "http://localhost:5052/getDevicesGroup/CMTS/"
+   urlGetDevicesCMTS = "http://"+getDevicesIP+":5052/getDevicesGroup/CMTS/"
    headers = {'Accept': 'application/data+json'}
    req = requests.get(urlGetDevicesCMTS, headers=headers)
 
@@ -29,7 +35,7 @@ def getDevicesCMTS(request):
    return render(request,"gateway/devicesCMTS.html",context)
 
 def getDevicesPE(request):
-   urlGetDevicesPE = "http://localhost:5052/getDevicesGroup/PE/"
+   urlGetDevicesPE = "http://"+getDevicesIP+":5052/getDevicesGroup/PE/"
    headers = {'Accept': 'application/data+json'}
    req = requests.get(urlGetDevicesPE, headers=headers)
    devicesPE = req.json()
@@ -88,7 +94,7 @@ def setControllerIntegratedCable(request,numSG,numArq):
         service = '{"controllerIntegratedCable:controllerIntegratedCable": [' \
                   '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
         print(service)
-        urlSetControllerIntegratedCable = "http://localhost:5054/setService/controllerIntegratedCable/" + serviceInstanceName
+        urlSetControllerIntegratedCable = "http://"+setServicesIP+":5054/setService/controllerIntegratedCable/" + serviceInstanceName
         print(urlSetControllerIntegratedCable)
 
         headers = {'Content-Type': 'application/vnd.yang.data+json'}
@@ -203,7 +209,7 @@ def setControllerUpstreamCable(request,numSG,numArq):
             service = '{"controllerUpstreamCable:controllerUpstreamCable": [' \
                   '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
             print(service)
-            urlSetControllerUpstreamCable = "http://localhost:5054/setService/controllerUpstreamCable/" + serviceInstanceName
+            urlSetControllerUpstreamCable = "http://"+setServicesIP+":5054/setService/controllerUpstreamCable/" + serviceInstanceName
             print(urlSetControllerUpstreamCable)
             headers = {'Content-Type': 'application/vnd.yang.data+json'}
             s = Session()
@@ -289,7 +295,7 @@ def setInterfaceCable(request,numSG,numArq,numUS):
             print(service)
 
 
-            urlSetInterfaceCable = "http://localhost:5054/setService/interfaceCable/" + serviceInstanceName
+            urlSetInterfaceCable = "http://"+setServicesIP+":5054/setService/interfaceCable/" + serviceInstanceName
             print(urlSetInterfaceCable)
             headers = {'Content-Type': 'application/vnd.yang.data+json'}
             s = Session()
@@ -361,7 +367,7 @@ def setIntIntegratedCable(request,numSG, numArq,numDS):
                 print(service)
 
 
-                urlSetIntIntegratedCable = "http://localhost:5054/setService/intIntegratedCable/" + serviceInstanceName
+                urlSetIntIntegratedCable = "http://"+setServicesIP+":5054/setService/intIntegratedCable/" + serviceInstanceName
                 print(urlSetIntIntegratedCable)
                 headers = {'Content-Type': 'application/vnd.yang.data+json'}
                 s = Session()
@@ -406,7 +412,7 @@ def createWideBandsFor8DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -434,7 +440,7 @@ def createWideBandsFor8DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -462,7 +468,7 @@ def createWideBandsFor8DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -509,7 +515,7 @@ def createWideBandsFor16DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -541,7 +547,7 @@ def createWideBandsFor16DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -573,7 +579,7 @@ def createWideBandsFor16DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -601,7 +607,7 @@ def createWideBandsFor16DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -629,7 +635,7 @@ def createWideBandsFor16DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -657,7 +663,7 @@ def createWideBandsFor16DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -685,7 +691,7 @@ def createWideBandsFor16DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -742,7 +748,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -774,7 +780,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -806,7 +812,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -838,7 +844,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -878,7 +884,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -907,7 +913,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -935,7 +941,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -963,7 +969,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -991,7 +997,7 @@ def createWideBandsFor24DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1056,7 +1062,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1104,7 +1110,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1144,7 +1150,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1184,7 +1190,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1216,7 +1222,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1249,7 +1255,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1281,7 +1287,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1314,7 +1320,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1342,7 +1348,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1370,7 +1376,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1398,7 +1404,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1426,7 +1432,7 @@ def createWideBandsFor32DS(device, card,pto,seqWideBand,data_Substring):
               '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
     print(service)
 
-    urlSetIntWideband = "http://localhost:5054/setService/intWideband/" + serviceInstanceName
+    urlSetIntWideband = "http://"+setServicesIP+":5054/setService/intWideband/" + serviceInstanceName
     print(urlSetIntWideband)
     headers = {'Content-Type': 'application/vnd.yang.data+json'}
     s = Session()
@@ -1603,7 +1609,7 @@ def setCableFiberNode(request,numSG,numArq):
                   '{"servicename": "' + serviceInstanceName + '",' + serviceData + "]}"
             print(service)
 
-            urlSetCableFiberNode = "http://localhost:5054/setService/cableFiberNode/" + serviceInstanceName
+            urlSetCableFiberNode = "http://"+setServicesIP+":5054/setService/cableFiberNode/" + serviceInstanceName
             print(urlSetCableFiberNode)
             headers = {'Content-Type': 'application/vnd.yang.data+json'}
             s = Session()

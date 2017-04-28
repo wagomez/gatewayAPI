@@ -5,7 +5,7 @@
 
 
 function callWSloadBalance(targetcmts, cLbD2,cLbD3){
-    var url = 'http://127.0.0.1:8000/setLoadBalance/'+targetcmts+'/'+cLbD2+'/'+cLbD3;
+    var url = '/setLoadBalance/'+targetcmts+'/'+cLbD2+'/'+cLbD3;
     //alert(url);
     var xhttp = new XMLHttpRequest();
 
@@ -15,8 +15,8 @@ function callWSloadBalance(targetcmts, cLbD2,cLbD3){
 
 
 function callWSgetDevices(){
-    var urlCMTS = 'http://127.0.0.1:8000/getDevicesCMTS';
-    var urlPE = 'http://127.0.0.1:8000/getDevicesPE';
+    var urlCMTS = '/getDevicesCMTS';
+    var urlPE = '/getDevicesPE';
     //alert(url);
     //var xhttp = new XMLHttpRequest();
 
@@ -177,7 +177,7 @@ $(document).ready(function(){
 
     $('#processIntCableCtrlBtn').click(function(){
 
-        alert("clickprocessIntCableCtrlBtn1");
+        //alert("clickprocessIntCableCtrlBtn1");
 
         callWSsetControllerIntegratedCable();
 
@@ -186,7 +186,7 @@ $(document).ready(function(){
 
     $('#processUSCableCtrlBtn').click(function(){
 
-        alert("clickprocessUSCableCtrlBtn");
+        //alert("clickprocessUSCableCtrlBtn");
 
         callWSsetControllerUpstreamCable();
 
@@ -195,7 +195,7 @@ $(document).ready(function(){
 
     $('#processIntCableBtn').click(function(){
 
-        alert("processIntCableBtn");
+        //alert("processIntCableBtn");
 
         callWSsetInterfaceCable();
 
@@ -204,7 +204,7 @@ $(document).ready(function(){
 
     $('#processIntegratedCableBtn').click(function(){
 
-        alert("processIntCableBtn");
+        //alert("processIntCableBtn");
 
         callWSsetIntIntegratedCable();
 
@@ -213,7 +213,7 @@ $(document).ready(function(){
 
     $('#processIntWideBandBtn').click(function(){
 
-        alert("processIntWideBandBtn");
+        //alert("processIntWideBandBtn");
 
         callWSsetIntWideBand();
 
@@ -223,7 +223,7 @@ $(document).ready(function(){
 
     $('#processCableFiberNodeBtn').click(function(){
 
-        alert("processCableFiberNodeBtn");
+        //alert("processCableFiberNodeBtn");
 
         callWSsetCableFiberNode();
 

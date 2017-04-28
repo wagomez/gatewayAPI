@@ -2,7 +2,21 @@
  * Created by waltergomez on 4/5/17.
  */
 
-
+(function( $ ){
+    $.myPOST = function( url, data, success ) {
+        var settings = {
+            type : "POST", //predefine request type to POST
+            'url'  : url,
+            'data' : data,
+            'timeout' : 100000000,
+            'success' : success,
+            'error': function(){
+                    alert("error4")
+            }
+        };
+        $.ajax(settings)
+    };
+})( jQuery );
 
 function usChangeEventHadler(numFreqUS){
     //alert("chang on " + numFreqUS);
@@ -270,7 +284,7 @@ function generateDSfs(){
 
 function callWSsetControllerIntegratedCable(){
     var objChange = document.getElementById('processIntCableCtrlBtn');
-    var urlWSsetControllerIntegratedCable = 'http://127.0.0.1:8000/setControllerIntegratedCable/';
+    var urlWSsetControllerIntegratedCable = '/setControllerIntegratedCable/';
     var numDSperSG = document.getElementById('dspersg').value;
     var initialFreq=Number(document.getElementById('freq0').value);
     var device= document.getElementById('valueCMTS').value;
@@ -279,12 +293,12 @@ function callWSsetControllerIntegratedCable(){
     var dataType='application/vnd.yang.data+json';
     var sgs=document.getElementById('sgs').value;
     initialFreq=initialFreq*1000000;
-    alert("numDS= " + numDSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch)
+    //alert("numDS= " + numDSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch)
 
     urlWSsetControllerIntegratedCable=urlWSsetControllerIntegratedCable+sgs+"/"+sgarch
-    alert(urlWSsetControllerIntegratedCable)
+    //alert(urlWSsetControllerIntegratedCable)
 
-    document.getElementById("processIntCableCtrlBtn").disabled = true;
+    //document.getElementById("processIntCableCtrlBtn").disabled = true;
 
     dataPost='{"device": "'+device + '", ' +
         '"numDS": "' + numDSperSG+'", ' +
@@ -292,10 +306,11 @@ function callWSsetControllerIntegratedCable(){
         '"endDS": "' + endDS+'"' +
         '}';
 
-    alert(dataPost);
+    //alert(dataPost);
 
     //$(selector).post(URL,data,function(data,status,xhr),dataType)
-    $.post(urlWSsetControllerIntegratedCable,dataPost, function(data,status){
+
+    $.myPOST(urlWSsetControllerIntegratedCable,dataPost, function(data,status){
 
         //alert(result);
         document.getElementById("processIntCableCtrlBtn").disabled = false;
@@ -315,7 +330,7 @@ function callWSsetControllerIntegratedCable(){
 
 function callWSsetControllerUpstreamCable(){
     var objChange = document.getElementById('processUSCableCtrlBtn');
-    var urlWSsetControllerUpstreamCable = 'http://127.0.0.1:8000/setControllerUpstreamCable/';
+    var urlWSsetControllerUpstreamCable = '/setControllerUpstreamCable/';
     var numUSperSG = Number(document.getElementById('uspersg').value);
     var device= document.getElementById('valueCMTS').value;
     var sgarch = Number(document.getElementById('sgarch').value);
@@ -329,7 +344,7 @@ function callWSsetControllerUpstreamCable(){
 
     usFreq0=usFreq0*1000000;
     usWidth0=usWidth0*1000000;
-    alert("uscod0= "+usCod0);
+    //alert("uscod0= "+usCod0);
     if(usMod0=="TDMA"){
         usMod0="tdma";
         if(usCod0=="QPSK"){
@@ -383,7 +398,7 @@ function callWSsetControllerUpstreamCable(){
             }
         }
     }
-    alert("usMod1= "+ usMod1);
+    //alert("usMod1= "+ usMod1);
     if(numUSperSG>2) {
         var usFreq2 = Number(document.getElementById('freqUsUL2').value);
         var usMod2 = document.getElementById('usmod2').value;
@@ -469,17 +484,17 @@ function callWSsetControllerUpstreamCable(){
     }
 
     dataPost = dataPost + '}';
-    alert (dataPost)
+    //alert (dataPost)
 
 
     urlWSsetControllerUpstreamCable=urlWSsetControllerUpstreamCable+sgs+"/"+sgarch
-    alert(urlWSsetControllerUpstreamCable)
+    //alert(urlWSsetControllerUpstreamCable)
 
 
-    document.getElementById("processUSCableCtrlBtn").disabled = true;
+    //document.getElementById("processUSCableCtrlBtn").disabled = true;
 
     //$(selector).post(URL,data,function(data,status,xhr),dataType)
-    $.post(urlWSsetControllerUpstreamCable,dataPost, function(data,status){
+    $.myPOST(urlWSsetControllerUpstreamCable,dataPost, function(data,status){
 
         //alert(result);
         document.getElementById("processUSCableCtrlBtn").disabled = false;
@@ -499,7 +514,7 @@ function callWSsetControllerUpstreamCable(){
 
 function callWSsetInterfaceCable(){
     var objChange = document.getElementById('processIntCableBtn');
-    var urlWSsetInterfaceCable = 'http://127.0.0.1:8000/setInterfaceCable/';
+    var urlWSsetInterfaceCable = '/setInterfaceCable/';
     var numDSperSG = document.getElementById('dspersg').value;
     var device= document.getElementById('valueCMTS').value;
     var endDS = numDSperSG - 1;
@@ -509,11 +524,11 @@ function callWSsetInterfaceCable(){
     var sgs=document.getElementById('sgs').value;
     var numUSperSG = Number(document.getElementById('uspersg').value);
 
-    alert("numUSperSG= " + numUSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch + " idbundle=" + idbundle + "  sgs" + sgs)
+    //alert("numUSperSG= " + numUSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch + " idbundle=" + idbundle + "  sgs" + sgs)
 
 
     urlWSsetInterfaceCable=urlWSsetInterfaceCable+sgs+"/"+sgarch+"/"+numUSperSG
-    alert(urlWSsetInterfaceCable)
+    //alert(urlWSsetInterfaceCable)
 
 
 
@@ -522,12 +537,12 @@ function callWSsetInterfaceCable(){
         '"numDS": "' + endDS+'"' +
         '}';
 
-    alert(dataPost);
+    //alert(dataPost);
 
-    document.getElementById("processIntCableBtn").disabled = true;
+    //document.getElementById("processIntCableBtn").disabled = true;
 
     //$(selector).post(URL,data,function(data,status,xhr),dataType)
-    $.post(urlWSsetInterfaceCable,dataPost, function(data,status){
+    $.myPOST(urlWSsetInterfaceCable,dataPost, function(data,status){
 
         //alert(result);
         document.getElementById("processIntCableCtrlBtn").disabled = false;
@@ -547,7 +562,7 @@ function callWSsetInterfaceCable(){
 
 function callWSsetIntIntegratedCable(){
     var objChange = document.getElementById('processIntegratedCableBtn');
-    var urlWSsetIntIntegratedCable = 'http://127.0.0.1:8000/setIntIntegratedCable/';
+    var urlWSsetIntIntegratedCable = '/setIntIntegratedCable/';
     var numDSperSG = document.getElementById('dspersg').value;
     var device= document.getElementById('valueCMTS').value;
     var endDS = numDSperSG - 1;
@@ -557,11 +572,11 @@ function callWSsetIntIntegratedCable(){
     var sgs=document.getElementById('sgs').value;
     var numUSperSG = Number(document.getElementById('uspersg').value);
 
-    alert("numUSperSG= " + numUSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch + " idbundle=" + idbundle + "  sgs" + sgs)
+    //alert("numUSperSG= " + numUSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch + " idbundle=" + idbundle + "  sgs" + sgs)
 
 
     urlWSsetIntIntegratedCable=urlWSsetIntIntegratedCable+sgs+"/"+sgarch+"/"+numDSperSG
-    alert(urlWSsetIntIntegratedCable)
+    //alert(urlWSsetIntIntegratedCable)
 
 
 
@@ -569,13 +584,13 @@ function callWSsetIntIntegratedCable(){
         '"idBundle": "' + idbundle+'"' +
         '}';
 
-    alert(dataPost);
+    //alert(dataPost);
 
 
-    document.getElementById("processIntegratedCableBtn").disabled = true;
+    //document.getElementById("processIntegratedCableBtn").disabled = true;
 
     //$(selector).post(URL,data,function(data,status,xhr),dataType)
-    $.post(urlWSsetIntIntegratedCable,dataPost, function(data,status){
+    $.myPOST(urlWSsetIntIntegratedCable,dataPost, function(data,status){
 
         //alert(result);
         document.getElementById("processIntegratedCableBtn").disabled = false;
@@ -595,7 +610,7 @@ function callWSsetIntIntegratedCable(){
 
 function callWSsetIntWideBand(){
     var objChange = document.getElementById('processIntWideBandBtn');
-    var urlWSsetIntWideBand = 'http://127.0.0.1:8000/setIntWideBand/';
+    var urlWSsetIntWideBand = '/setIntWideBand/';
     var numDSperSG = document.getElementById('dspersg').value;
     var device= document.getElementById('valueCMTS').value;
     var endDS = numDSperSG - 1;
@@ -605,11 +620,11 @@ function callWSsetIntWideBand(){
     var sgs=document.getElementById('sgs').value;
     var numUSperSG = Number(document.getElementById('uspersg').value);
 
-    alert("numUSperSG= " + numUSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch + " idbundle=" + idbundle + "  sgs" + sgs)
+    //alert("numUSperSG= " + numUSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch + " idbundle=" + idbundle + "  sgs" + sgs)
 
 
     urlWSsetIntWideBand=urlWSsetIntWideBand+sgs+"/"+sgarch+"/"+numDSperSG
-    alert(urlWSsetIntWideBand)
+    //alert(urlWSsetIntWideBand)
 
 
 
@@ -617,18 +632,21 @@ function callWSsetIntWideBand(){
         '"idBundle": "' + idbundle+'"' +
         '}';
 
-    alert(dataPost);
+    //alert(dataPost);
 
 
-    document.getElementById("processIntWideBandBtn").disabled = true;
+    //document.getElementById("processIntWideBandBtn").disabled = true;
 
     //$(selector).post(URL,data,function(data,status,xhr),dataType)
-    $.post(urlWSsetIntWideBand,dataPost, function(data,status){
 
-        //alert(result);
+    //$.post(urlWSsetIntWideBand,dataPost, function(data,status){
+
+    $.myPOST(urlWSsetIntWideBand, dataPost, function(data,status){
+        //alert("finish");
+
         document.getElementById("processIntWideBandBtn").disabled = false;
 
-        alert("Status Code==" + status)
+        alert("Status Code==" + status);
         if(status=="success"){
             objChange.setAttribute("class", "list-group-item-success");
         }
@@ -638,12 +656,39 @@ function callWSsetIntWideBand(){
 
     });
 
+    /*$.ajax({
+        type: "POST",
+        url: urlWSsetIntWideBand,
+        data: dataPost,
+        async: true,
+        success: function(data,status){
+            //alert("finish");
+
+            document.getElementById("processIntWideBandBtn").disabled = false;
+
+            alert("Status Code==" + status);
+            if(status=="success"){
+                objChange.setAttribute("class", "list-group-item-success");
+            }
+            else{
+                objChange.setAttribute("class", "list-group-item-warning");
+            }
+
+        },
+        timeout: 100000,
+        error: function(){
+            alert("error3")
+        }
+
+    });
+    */
+
 }
 
 
 function callWSsetCableFiberNode(){
     var objChange = document.getElementById('processCableFiberNodeBtn');
-    var urlWSsetCableFiberNode = 'http://127.0.0.1:8000/setCableFiberNode/';
+    var urlWSsetCableFiberNode = '/setCableFiberNode/';
     var numDSperSG = document.getElementById('dspersg').value;
     var device= document.getElementById('valueCMTS').value;
     var endDS = numDSperSG - 1;
@@ -653,24 +698,24 @@ function callWSsetCableFiberNode(){
     var sgs=document.getElementById('sgs').value;
     var numUSperSG = Number(document.getElementById('uspersg').value);
 
-    alert("numUSperSG= " + numUSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch + " idbundle=" + idbundle + "  sgs" + sgs)
+    //alert("numUSperSG= " + numUSperSG + " endDS= " + endDS + " device= " + device + " sgarch= " + sgarch + " idbundle=" + idbundle + "  sgs" + sgs)
 
 
     urlWSsetCableFiberNode=urlWSsetCableFiberNode+sgs+"/"+sgarch
-    alert(urlWSsetCableFiberNode)
+    //alert(urlWSsetCableFiberNode)
 
 
 
     var dataPost='{"device": "'+device + '"'+
         '}';
 
-    alert(dataPost);
+    //alert(dataPost);
 
 
-    document.getElementById("processCableFiberNodeBtn").disabled = true;
+    //document.getElementById("processCableFiberNodeBtn").disabled = true;
 
     //$(selector).post(URL,data,function(data,status,xhr),dataType)
-    $.post(urlWSsetCableFiberNode,dataPost, function(data,status){
+    $.myPOST(urlWSsetCableFiberNode,dataPost, function(data,status){
 
         //alert(result);
         document.getElementById("processCableFiberNodeBtn").disabled = false;

@@ -1,0 +1,38 @@
+gwapi:
+    build: ../../
+    dockerfile: docker/stage/Dockerfile
+    links:
+      - msgetdevices
+      - mssetservices
+    environment:
+      GETDEVICES_HOST: msgetdevices
+      SETSERVICES_HOST: mssetservices
+      DJANGO_SETTINGS_MODULE: gatewayAPI.settings.base
+    ports:
+      - "8000:8000"
+
+msgetdevices:
+    build: ../../../enigmaMicroservices/
+    dockerfile: docker/stage/msGetDevices/Dockerfile
+    environment:
+      NSO_IP: 192.168.0.220
+    ports:
+      - "5052:5052"
+
+mssetservices:
+    build: ../../../enigmaMicroservices/
+    dockerfile: docker/stage/msAPIsetService/Dockerfile
+    environment:
+      NSO_IP: 192.168.0.220
+    ports:
+      - "5054:5054"
+
+proxy:
+  build: ../../
+  dockerfile: docker/nginx/Dockerfile
+  links:
+    - msgetdevices
+    - mssetservices
+    - gwapi
+  ports:
+    - "8100:8100"
