@@ -28,7 +28,7 @@ mssetservices:
       - "5054:5054"
 
 proxy:
-  build: 
+  build:
   dockerfile: docker/nginx/Dockerfile
   links:
     - msgetdevices
