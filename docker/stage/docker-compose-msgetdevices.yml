@@ -2,6 +2,5 @@ msgetdevices:
     build: ../../../enigmaMicroservices/
     dockerfile: docker/stage/msGetDevices/Dockerfile
     environment:
-      NSO_IP: 192.168.0.220
-    ports:
+      NSO_IP: 192.168.56.20
       - "5052:5052"

@@ -60,7 +60,7 @@ class TestSetLoadBalanceCMTS(APITestCase):
     Verify Setting Load Balance to a CMTS via Microservices API
     """
     def setUp(self):
-        self.response = self.client.get('/setLoadBalance/cbr8-1/0/0/')
+        self.response = self.client.get('/setLoadBalance/cbr8-0/0/0/')
 
     def test_GetCMTS_received_200_status_code(self):
         self.assertEqual(self.response.status_code, status.HTTP_200_OK)

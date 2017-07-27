@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+    <title>NSO</title>
+
+    <link rel="stylesheet" type="text/css" href="login/lib/xwt/themes/prime/prime-base.css">
+    <link rel="stylesheet" type="text/css" href="login/lib/xwt/themes/prime/prime-xwt.css">
+    <link rel="stylesheet" type="text/css" href="login/login.css">
+
+    <!-- set up Dojo configuration - must be before load of the dojo.js script -->
+    <script type="text/javascript">
+      dojoConfig = {
+        parseOnLoad: true,
+        isDebug: false,
+        async: true,
+
+        packages: [
+          {name: 'login', location: '/login'}
+        ],
+
+        aliases: [
+          ['lodash', 'login/lib/lodash/dist/lodash.min.js'],
+          ['jquery', 'login/lib/jquery/dist/jquery.min.js']
+        ]
+      }
+    </script>
+
+    <!-- required: dojo.js -->
+    <script type="text/javascript" src="login/lib/dojo/dojo.js"></script>
+
+    <script type="text/javascript">
+      require([
+        'dojo',
+        'dojo/parser',
+        'lodash',
+        'login/login'
+      ], function(
+        dojo,
+        parser,
+        _,
+        login
+      ) {
+        dojo.addOnLoad(function(){
+          _.defer(function() {
+            // escape dojo's try-catch
+            login.run('loginPage');
+          });
+        });
+        parser.parse();
+      });
+    </script>
+  </head>
+
+  <body class="prime">
+    <div id="loginPage">
+    </div>
+  </body>
+</html>

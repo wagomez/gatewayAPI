@@ -14,14 +14,14 @@ gwapi:
 msgetdevices:
     image: msgetdevices_msgetdevices:latest
     environment:
-      NSO_IP: 192.168.0.220
+      NSO_IP: 192.168.56.20
     ports:
       - "5052:5052"
 
 mssetservices:
     image: msapisetservice_mssetservices:latest
     environment:
-      NSO_IP: 192.168.0.220
+      NSO_IP: 192.168.56.20
     ports:
       - "5054:5054"
 

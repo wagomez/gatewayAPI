@@ -15,7 +15,7 @@ msgetdevices:
     build: enigmaMicroservices/
     dockerfile: docker/stage/msGetDevices/Dockerfile
     environment:
-      NSO_IP: 192.168.0.220
+      NSO_IP: 192.168.56.20
     ports:
       - "5052:5052"
 
@@ -23,7 +23,7 @@ mssetservices:
     build: enigmaMicroservices/
     dockerfile: docker/stage/msAPIsetService/Dockerfile
     environment:
-      NSO_IP: 192.168.0.220
+      NSO_IP: 192.168.56.20
     ports:
       - "5054:5054"
 
