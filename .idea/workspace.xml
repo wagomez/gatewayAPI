@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6c2fdb-fdb5-4929-8d57-ed11709d287f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker/stage/docker-compose-gwapi.yml" afterPath="$PROJECT_DIR$/docker/stage/docker-compose-gwapi.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker/stage/docker-compose-images.yml" afterPath="$PROJECT_DIR$/docker/stage/docker-compose-images.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker/stage/docker-compose-jenk.yml" afterPath="$PROJECT_DIR$/docker/stage/docker-compose-jenk.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker/stage/docker-compose-msgetdevices.yml" afterPath="$PROJECT_DIR$/docker/stage/docker-compose-msgetdevices.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker/stage/docker-compose.yml" afterPath="$PROJECT_DIR$/docker/stage/docker-compose.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/templates/gateway/baseLayout.html" afterPath="$PROJECT_DIR$/src/gateway/templates/gateway/baseLayout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gateway/tests.py" afterPath="$PROJECT_DIR$/src/gateway/tests.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,8 +26,8 @@
       <file leaf-file-name="baseLayout.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gateway/templates/gateway/baseLayout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="70" column="20" lean-forward="false" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
+            <state relative-caret-position="322">
+              <caret line="72" column="16" lean-forward="true" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -141,7 +134,7 @@
     <option name="x" value="39" />
     <option name="y" value="23" />
     <option name="width" value="1292" />
-    <option name="height" value="851" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -394,15 +387,15 @@
       <workItem from="1500912826003" duration="719000" />
       <workItem from="1500914585230" duration="1690000" />
       <workItem from="1500916684186" duration="2299000" />
-      <workItem from="1501107966038" duration="4625000" />
+      <workItem from="1501107966038" duration="4914000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42053000" />
+    <option name="totallyTimeSpent" value="42342000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="39" y="23" width="1292" height="851" extended-state="0" />
+    <frame x="39" y="23" width="1292" height="745" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -798,8 +791,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gateway/templates/gateway/baseLayout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="70" column="20" lean-forward="false" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
+        <state relative-caret-position="322">
+          <caret line="72" column="16" lean-forward="true" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
           <folding />
         </state>
       </provider>
